@@ -10,5 +10,5 @@ class User < ApplicationRecord
 	has_many :tweets
 
 	has_many :relationships, foreign_key: 'follower_id', class_name: 'Relationship'
-	has_many :followings, through: :relationships
+	has_many :following, through: :relationships
 end
