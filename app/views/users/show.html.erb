@@ -1,3 +1,5 @@
+<%= notice %>
+
 <h1><%= @user.username %></h1>
 <p>Location: <%= @user.location %></p>
 <p>Bio: <%= @user.bio %></p>
@@ -8,14 +10,23 @@
       </div>
       <div class="row">
       <% end %>
-    <div class = "col-md-3 card">  
+    <div class = "col-md-3 card">
       <div class="card-body">
-        <h3 class="card-title"> <%= link_to tweet.user.username, show_user_path(tweet.user) %> </h3>
+        <h3 class="card-title"> <%= link_to tweet.user.username, user_path(tweet.user) %> </h3>
         <p class="card-body"><%= tweet.content %></h5>
         <%= link_to 'Show', tweet, class: 'card-link' %>
         <%= link_to 'Edit', edit_tweet_path(tweet), class: 'card-link' %>
         <%= link_to 'Destroy', tweet, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
-      </div> 
+      </div>
     </div>
     <% end %>
   </div>
+
+<h2>Users <%= @user.username %> is following</h2>
+<% if @user.following.length > 0 %>
+  <ol>
+      <% @user.following.each do |user| %>
+        <li><%= user.username %></li>
+      <% end %>
+  </ol>
+<% end %>
